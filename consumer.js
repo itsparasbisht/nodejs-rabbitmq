@@ -10,6 +10,10 @@ async function connect() {
     channel.consume("jobs", (message) => {
       const input = JSON.parse(message.content.toString());
       console.log(input);
+
+      if (input.number == 10) {
+        channel.ack(message);
+      }
     });
 
     console.log("waiting for messages...");
